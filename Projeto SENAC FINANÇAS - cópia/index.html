@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Orça</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div id="introSplash" class="intro-splash" aria-live="polite">
+    <div class="intro-logo">Orça</div>
+    <p class="intro-subtitle">Planeje sua vida financeira</p>
+    <span class="intro-loader" aria-hidden="true"></span>
+  </div>
+
+  <section id="authGate" class="auth-gate is-hidden">
+    <div class="auth-card">
+      <h2>Acesse sua conta</h2>
+      <p class="auth-description">Ao iniciar, escolha entre fazer cadastro ou login para abrir o app.</p>
+
+      <div class="auth-tabs" role="tablist" aria-label="Tipo de acesso">
+        <button id="showLogin" class="auth-tab-btn active" type="button" role="tab" aria-selected="true">Fazer login</button>
+        <button id="showRegister" class="auth-tab-btn" type="button" role="tab" aria-selected="false">Criar cadastro</button>
+      </div>
+
+      <form id="loginForm" class="auth-form" novalidate>
+        <label class="auth-field">
+          <span>E-mail</span>
+          <input id="loginEmail" class="field-input" type="email" placeholder="seuemail@exemplo.com" required />
+        </label>
+
+        <label class="auth-field">
+          <span>Senha</span>
+          <div class="password-input-wrap">
+            <input id="loginPassword" class="field-input" type="password" placeholder="Digite sua senha" required />
+            <button type="button" class="password-toggle" data-password-toggle data-target="loginPassword" aria-label="Mostrar senha">
+              <svg class="icon-eye-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+              <svg class="icon-eye-closed" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M3 9.5A13.1 13.1 0 0 0 12 13a13.1 13.1 0 0 0 9-3.5"></path>
+                <path d="M6.2 14.5 5 17"></path>
+                <path d="M10 16.3 9.5 19"></path>
+                <path d="M14 16.3 14.5 19"></path>
+                <path d="M17.8 14.5 19 17"></path>
+              </svg>
+            </button>
+          </div>
+        </label>
+
+        <button id="openForgotPassword" type="button" class="forgot-link">Esqueci a senha</button>
+        <p id="loginFeedback" class="auth-feedback error" aria-live="polite"></p>
+        <button type="submit" class="auth-submit">Entrar</button>
+      </form>
+
+      <form id="registerForm" class="auth-form is-hidden" novalidate>
+        <label class="auth-field">
+          <span>Nome e sobrenome</span>
+          <input id="registerFullName" class="field-input" type="text" placeholder="Digite seu nome e sobrenome" required />
+        </label>
+
+        <div class="register-photo-block">
+          <label class="register-photo-label" for="registerProfilePhotoInput">
+            <img id="registerProfilePhotoPreview" src="" alt="Prévia da foto de perfil" />
+          </label>
+          <input id="registerProfilePhotoInput" class="file-input-hidden" type="file" accept="image/*" />
+          <p class="register-photo-help">Faça o upload da sua foto</p>
+        </div>
+
+        <label class="auth-field">
+          <span>E-mail</span>
+          <input id="registerEmail" class="field-input" type="email" placeholder="seuemail@exemplo.com" required />
+        </label>
+
+        <label class="auth-field">
+          <span>Senha</span>
+          <div class="password-input-wrap">
+            <input id="registerPassword" class="field-input" type="password" placeholder="Crie uma senha" required />
+            <button type="button" class="password-toggle" data-password-toggle data-target="registerPassword" aria-label="Mostrar senha">
+              <svg class="icon-eye-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+              <svg class="icon-eye-closed" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M3 9.5A13.1 13.1 0 0 0 12 13a13.1 13.1 0 0 0 9-3.5"></path>
+                <path d="M6.2 14.5 5 17"></path>
+                <path d="M10 16.3 9.5 19"></path>
+                <path d="M14 16.3 14.5 19"></path>
+                <path d="M17.8 14.5 19 17"></path>
+              </svg>
+            </button>
+          </div>
+        </label>
+
+        <label class="auth-field">
+          <span>Confirmar senha</span>
+          <div class="password-input-wrap">
+            <input id="registerConfirm" class="field-input" type="password" placeholder="Repita sua senha" required />
+            <button type="button" class="password-toggle" data-password-toggle data-target="registerConfirm" aria-label="Mostrar senha">
+              <svg class="icon-eye-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+              <svg class="icon-eye-closed" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M3 9.5A13.1 13.1 0 0 0 12 13a13.1 13.1 0 0 0 9-3.5"></path>
+                <path d="M6.2 14.5 5 17"></path>
+                <path d="M10 16.3 9.5 19"></path>
+                <path d="M14 16.3 14.5 19"></path>
+                <path d="M17.8 14.5 19 17"></path>
+              </svg>
+            </button>
+          </div>
+        </label>
+
+        <p id="registerMismatch" class="auth-feedback error" aria-live="polite"></p>
+        <p id="registerFeedback" class="auth-feedback success" aria-live="polite"></p>
+        <button type="submit" class="auth-submit">Enviar cadastro</button>
+      </form>
+    </div>
+  </section>
+
+  <main class="page is-hidden" id="appPage">
+    <header class="app-header">
+      <div class="brand">
+        <div class="logo">
+          <img src="Icones/imagelogotipo.png" alt="Logo" class="logo-icon logo-light" />
+          <img src="Icones/imagelogotipobranco.png" alt="Logo Branco" class="logo-icon logo-dark" />
+        </div>
+
+        <div>
+          <h1>Orça</h1>
+          <div class="subtitle">Organize • acompanhe • cresça</div>
+        </div>
+      </div>
+
+      <div class="header-right">
+        <nav class="main-nav" aria-label="Navegação principal">
+          <button type="button" class="nav-item" data-view-target="aquisicoes">Aquisições</button>
+          <button type="button" class="nav-item active" data-view-target="financeiro">Organização financeira</button>
+          <button type="button" class="nav-item" data-view-target="visao-geral">Visão geral</button>
+        </nav>
+
+        <div class="menu-wrapper">
+          <button id="menuToggle" class="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+              <line x1="4" y1="7" x2="20" y2="7"></line>
+              <line x1="4" y1="12" x2="20" y2="12"></line>
+              <line x1="4" y1="17" x2="20" y2="17"></line>
+            </svg>
+          </button>
+
+          <div id="menuDropdown" class="menu-dropdown is-hidden" role="menu" aria-label="Menu da conta">
+            <button type="button" class="menu-item" data-menu-action="change-account">Alterar dados da conta</button>
+            <button type="button" class="menu-item" data-menu-action="toggle-theme">Alterar tema</button>
+            <button type="button" class="menu-item" data-menu-action="edit-profile">Editar perfil</button>
+            <button type="button" class="menu-item" data-menu-action="logout">Sair</button>
+          </div>
+        </div>
+
+        <div class="profile-badge" id="profileBadge">
+          <img id="headerProfileImage" src="" alt="Foto de perfil" />
+          <span id="headerProfileName">Nome do perfil</span>
+        </div>
+      </div>
+    </header>
+
+    <section id="aquisicoesView" class="view-panel">
+      <div class="wish-piggy-card">
+        <div>
+          <h2>Cofrinho geral</h2>
+          <p class="wish-help-text">Guarde o valor total que você tem disponível para suas futuras aquisições.</p>
+          <p id="piggyBankTotal" class="piggy-value">R$ 0,00</p>
+        </div>
+
+        <div class="wish-inline-form">
+          <label class="auth-field">
+            <span>Valor para ajustar no cofrinho</span>
+            <input id="piggyBankInput" class="field-input" type="number" min="0" step="0.01" placeholder="0,00" />
+          </label>
+          <div class="wish-inline-actions">
+            <button type="button" id="addPiggyBankValue" class="auth-submit">Adicionar</button>
+            <button type="button" id="removePiggyBankValue" class="ghost-action">Remover</button>
+          </div>
+        </div>
+      </div>
+
+      <p id="wishesFeedback" class="auth-feedback" aria-live="polite"></p>
+
+      <section id="wishesList" class="wishes-list"></section>
+
+      <button type="button" id="addWishButton" class="add-period">＋ Adicionar período de aquisição</button>
+    </section>
+
+    <section id="financeiroView" class="view-panel is-hidden">
+      <section class="summary">
+        <div class="summary-card">
+          <div class="summary-title"><span class="icon-chip chip-green">↗</span> Total Ganho</div>
+          <div class="summary-value green" id="totalGanho">R$ 0,00</div>
+        </div>
+        <div class="summary-card">
+          <div class="summary-title"><span class="icon-chip chip-red">↘</span> Total Gasto</div>
+          <div class="summary-value red" id="totalGasto">R$ 0,00</div>
+        </div>
+        <div class="summary-card">
+          <div class="summary-title">
+            <span class="icon-chip chip-green icon-img-wrap">
+              <img src="Icones/imagecarteira.png" alt="Carteira" class="icon-img" />
+            </span>
+            Sobra
+          </div>
+          <div class="summary-value" id="sobra">R$ 0,00</div>
+        </div>
+      </section>
+
+      <section class="periods" id="periods"></section>
+
+      <div class="add-period" id="addPeriod">＋ Adicionar Período</div>
+    </section>
+
+    <section id="overviewView" class="view-panel is-hidden">
+      <div class="overview-card">
+        <h2>Visão geral</h2>
+        <p id="overviewWelcome" class="wish-help-text">Acompanhe seu progresso geral no Orça.</p>
+
+        <div class="overview-grid">
+          <div>
+            <span class="overview-label">Total no cofrinho</span>
+            <strong id="overviewPiggy">R$ 0,00</strong>
+          </div>
+          <div>
+            <span class="overview-label">Progresso médio das aquisições</span>
+            <strong id="overviewProgress">0%</strong>
+          </div>
+          <div>
+            <span class="overview-label">Saldo da organização financeira</span>
+            <strong id="overviewFinance">R$ 0,00</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="accountDataModal" class="modal-overlay is-hidden" role="dialog" aria-modal="true" aria-labelledby="accountDataTitle">
+    <div class="settings-card">
+      <div class="settings-top">
+        <h2 id="accountDataTitle">Alterar dados da conta</h2>
+        <button id="closeAccountData" class="settings-close" type="button" aria-label="Fechar">✕</button>
+      </div>
+
+      <form id="accountDataForm" class="settings-form" novalidate>
+        <label class="auth-field">
+          <span>Novo e-mail</span>
+          <input id="accountEmail" class="field-input" type="email" placeholder="novoemail@exemplo.com" required />
+        </label>
+
+        <label class="auth-field">
+          <span>Nova senha</span>
+          <div class="password-input-wrap">
+            <input id="accountPassword" class="field-input" type="password" placeholder="Nova senha" required />
+            <button type="button" class="password-toggle" data-password-toggle data-target="accountPassword" aria-label="Mostrar senha">
+              <svg class="icon-eye-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+              <svg class="icon-eye-closed" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M3 9.5A13.1 13.1 0 0 0 12 13a13.1 13.1 0 0 0 9-3.5"></path>
+                <path d="M6.2 14.5 5 17"></path>
+                <path d="M10 16.3 9.5 19"></path>
+                <path d="M14 16.3 14.5 19"></path>
+                <path d="M17.8 14.5 19 17"></path>
+              </svg>
+            </button>
+          </div>
+        </label>
+
+        <label class="auth-field">
+          <span>Confirmar nova senha</span>
+          <div class="password-input-wrap">
+            <input id="accountPasswordConfirm" class="field-input" type="password" placeholder="Confirme a nova senha" required />
+            <button type="button" class="password-toggle" data-password-toggle data-target="accountPasswordConfirm" aria-label="Mostrar senha">
+              <svg class="icon-eye-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+              <svg class="icon-eye-closed" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M3 9.5A13.1 13.1 0 0 0 12 13a13.1 13.1 0 0 0 9-3.5"></path>
+                <path d="M6.2 14.5 5 17"></path>
+                <path d="M10 16.3 9.5 19"></path>
+                <path d="M14 16.3 14.5 19"></path>
+                <path d="M17.8 14.5 19 17"></path>
+              </svg>
+            </button>
+          </div>
+        </label>
+
+        <p id="accountDataFeedback" class="auth-feedback" aria-live="polite"></p>
+
+        <div class="settings-actions">
+          <button id="cancelAccountData" class="ghost-action" type="button">Cancelar</button>
+          <button class="auth-submit" type="submit">Salvar alterações</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="editProfileModal" class="modal-overlay is-hidden" role="dialog" aria-modal="true" aria-labelledby="editProfileTitle">
+    <div class="settings-card">
+      <div class="settings-top">
+        <h2 id="editProfileTitle">Editar perfil</h2>
+        <button id="closeEditProfile" class="settings-close" type="button" aria-label="Fechar">✕</button>
+      </div>
+
+      <form id="editProfileForm" class="settings-form" novalidate>
+        <div class="register-photo-block">
+          <label class="register-photo-label" for="editProfilePhotoInput">
+            <img id="editProfilePhotoPreview" src="" alt="Prévia da foto de perfil" />
+          </label>
+          <input id="editProfilePhotoInput" class="file-input-hidden" type="file" accept="image/*" />
+          <p class="register-photo-help">Faça o upload da sua foto</p>
+        </div>
+
+        <label class="auth-field">
+          <span>Nome e sobrenome</span>
+          <input id="editProfileName" class="field-input" type="text" placeholder="Atualize seu nome e sobrenome" />
+        </label>
+
+        <p id="editProfileFeedback" class="auth-feedback" aria-live="polite"></p>
+
+        <div class="settings-actions">
+          <button id="cancelEditProfile" class="ghost-action" type="button">Cancelar</button>
+          <button class="auth-submit" type="submit">Atualizar perfil</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="forgotPasswordModal" class="modal-overlay is-hidden" role="dialog" aria-modal="true" aria-labelledby="forgotPasswordTitle">
+    <div class="settings-card">
+      <div class="settings-top">
+        <h2 id="forgotPasswordTitle">Recupere sua conta</h2>
+        <button id="closeForgotPassword" class="settings-close" type="button" aria-label="Fechar">✕</button>
+      </div>
+
+      <form id="forgotPasswordForm" class="settings-form" novalidate>
+        <p class="auth-description">
+          Insira seu e-mail cadastrado no campo abaixo e envie. Você receberá uma mensagem do Orça no seu e-mail para redefinir a sua senha.
+        </p>
+
+        <label class="auth-field">
+          <span>E-mail cadastrado</span>
+          <input id="forgotPasswordEmail" class="field-input" type="email" placeholder="seuemail@exemplo.com" required />
+        </label>
+
+        <p id="forgotPasswordFeedback" class="auth-feedback" aria-live="polite"></p>
+
+        <div class="settings-actions">
+          <button id="cancelForgotPassword" class="ghost-action" type="button">Cancelar</button>
+          <button class="auth-submit" type="submit">Enviar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="resetPasswordModal" class="modal-overlay is-hidden" role="dialog" aria-modal="true" aria-labelledby="resetPasswordTitle">
+    <div class="settings-card">
+      <div class="settings-top">
+        <h2 id="resetPasswordTitle">Redefinir senha</h2>
+      </div>
+
+      <form id="resetPasswordForm" class="settings-form" novalidate>
+        <p class="auth-description">Digite sua nova senha para concluir a recuperação da conta.</p>
+
+        <label class="auth-field">
+          <span>Nova senha</span>
+          <div class="password-input-wrap">
+            <input id="resetPassword" class="field-input" type="password" placeholder="Nova senha" required />
+            <button type="button" class="password-toggle" data-password-toggle data-target="resetPassword" aria-label="Mostrar senha">
+              <svg class="icon-eye-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+              <svg class="icon-eye-closed" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M3 9.5A13.1 13.1 0 0 0 12 13a13.1 13.1 0 0 0 9-3.5"></path>
+                <path d="M6.2 14.5 5 17"></path>
+                <path d="M10 16.3 9.5 19"></path>
+                <path d="M14 16.3 14.5 19"></path>
+                <path d="M17.8 14.5 19 17"></path>
+              </svg>
+            </button>
+          </div>
+        </label>
+
+        <label class="auth-field">
+          <span>Confirmar nova senha</span>
+          <div class="password-input-wrap">
+            <input id="resetPasswordConfirm" class="field-input" type="password" placeholder="Confirme a nova senha" required />
+            <button type="button" class="password-toggle" data-password-toggle data-target="resetPasswordConfirm" aria-label="Mostrar senha">
+              <svg class="icon-eye-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+              <svg class="icon-eye-closed" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M3 9.5A13.1 13.1 0 0 0 12 13a13.1 13.1 0 0 0 9-3.5"></path>
+                <path d="M6.2 14.5 5 17"></path>
+                <path d="M10 16.3 9.5 19"></path>
+                <path d="M14 16.3 14.5 19"></path>
+                <path d="M17.8 14.5 19 17"></path>
+              </svg>
+            </button>
+          </div>
+        </label>
+
+        <p id="resetPasswordFeedback" class="auth-feedback" aria-live="polite"></p>
+
+        <div class="settings-actions">
+          <button class="auth-submit" type="submit">Salvar nova senha</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
